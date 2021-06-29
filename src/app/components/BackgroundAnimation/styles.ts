@@ -17,7 +17,7 @@ const jssStyles = createUseStyles({
     return {
       position: "absolute",
       display: "block",
-      background: "linear-gradient(to left, #357fd3, #8d2cb9)",
+      background: "linear-gradient(to left, #61c635, #35d827)",
       width: size,
       height: size,
       left: left,
