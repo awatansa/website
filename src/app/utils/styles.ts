@@ -11,7 +11,6 @@ const jssStyles = createUseStyles({
     justifyContent: "center",
     alignItems: "center",
   },
-  
 });
 
 function useStyles() {

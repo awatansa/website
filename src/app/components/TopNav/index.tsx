@@ -1,6 +1,6 @@
 import useStyles from "app/utils/styles";
-import React from "react";
 import { Button } from "primereact/button";
+import React from "react";
 
 const TopNav: React.FC = () => {
   const classes = useStyles();
@@ -15,11 +15,11 @@ const TopNav: React.FC = () => {
         <div className="button-demo">
           <div className="card">
             <div className="template">
-              <Button className="discord p-p-0" onClick={handleClick}>
-                <i className="pi pi-discord p-px-2"></i>
-                &nbsp;
-                <span className="p-px-3">Discord</span>
-              </Button>
+              <Button
+                className="discord p-p-0"
+                icon={"pi pi-discord p-p-2"}
+                onClick={handleClick}
+              />
             </div>
           </div>
         </div>
