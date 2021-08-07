@@ -6,7 +6,7 @@ const TopNav: React.FC = () => {
   const classes = useStyles();
 
   function handleClick() {
-    window.location.href = "https://discord.gg/NhvfJAHzD3";
+    window.open("https://discord.gg/NhvfJAHzD3");
   }
 
   return (
@@ -16,8 +16,9 @@ const TopNav: React.FC = () => {
           <div className="card">
             <div className="template">
               <Button
-                className="discord p-p-0"
-                icon={"pi pi-discord p-p-2"}
+                className="discord p-p-1"
+                label={"Discord"}
+                icon={"pi pi-discord p-p-1"}
                 onClick={handleClick}
               />
             </div>
