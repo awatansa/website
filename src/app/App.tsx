@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="App">
       <Suspense fallback={AppLoading}>
-        <TopNav />
-        <ThemeLoader />
+        <ThemeLoader/>
       </Suspense>
+      <TopNav/>
     </div>
   );
 }
