@@ -1,18 +1,25 @@
+.app {
+  display: block;
+  width: calc(100vw - 0.2px);
+  height: calc(100vh - 0.2px);
+}
 
-.button-demo .template .p-button.discord {
-  background: linear-gradient(to left, var(--bluegray-700) 50%, var(--bluegray-800) 50%);
-  background-size: 200% 100%;
-  background-position: right bottom;
-  transition: background-position 0.5s ease-out;
-  color: #fff;
-  border-color: var(--bluegray-800);
+.root-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
-.button-demo .template .p-button.discord:hover {
-  background-position: left bottom;
+
+.privacy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.button-demo .template .p-button.discord i {
-  background-color: var(--bluegray-800);
-}
-.button-demo .template .p-button.discord:focus {
-  box-shadow: 0 0 0 1px var(--bluegray-500);
+
+.privacy-p {
+  max-width: 50vw;
 }
