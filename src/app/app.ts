@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent, LayoutComponent } from '@/commons/components';
 
@@ -14,5 +14,6 @@ import { HeaderComponent, LayoutComponent } from '@/commons/components';
     </ng-template>
     <vy-layout [headerTemplate]="header" [mainTemplate]="main" />
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App {}
+export class App { }
