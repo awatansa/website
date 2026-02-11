@@ -7,12 +7,8 @@ import { HeaderComponent, LayoutComponent } from '@/commons/components';
   imports: [RouterOutlet, LayoutComponent, HeaderComponent],
   template: `
     <vy-layout>
-      <header>
-        <vy-header />
-      </header>
-      <main>
-        <router-outlet />
-      </main>
+      <vy-header />
+      <router-outlet />
     </vy-layout>
   `,
 })

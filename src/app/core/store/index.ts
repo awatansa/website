@@ -23,6 +23,12 @@ export const GlobalStore = signalStore(
                 documentService.applyTheme(nextTheme);
                 themeStorage.setTheme(nextTheme);
             },
+            setTheme: (theme: 'light' | 'dark') => {
+                if (store.theme() === theme) return;
+                patchState(store, { theme });
+                documentService.applyTheme(theme);
+                themeStorage.setTheme(theme);
+            },
         };
     }),
     withHooks({
