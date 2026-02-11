@@ -1,16 +1,18 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ToggleSwitch } from 'primeng/toggleswitch';
+import { GlobalStore } from '@/core/store';
 
 @Component({
   selector: 'vy-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, ToggleSwitch],
   template: `
-    <h1>Hello, {{ title() }}</h1>
+    <p-toggle-switch  (onChange)="store.toggleDarkMode()" />
 
     <router-outlet />
   `,
   styles: [],
 })
 export class App {
-  protected readonly title = signal('website');
+  protected readonly store = inject(GlobalStore)
 }

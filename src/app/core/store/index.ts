@@ -3,11 +3,12 @@ import { patchState, signalStore, withState, withMethods } from "@ngrx/signals";
 import { DocumentService } from "../services/document";
 import { ThemeStorageService } from "../services/theme-storage";
 
-interface GlobalState {
+export interface GlobalState {
     theme: 'light' | 'dark';
 }
 
 export const GlobalStore = signalStore(
+    { providedIn: 'root' },
     withState<GlobalState>({
         theme: 'light',
     }),
