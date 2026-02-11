@@ -6,10 +6,13 @@ import { HeaderComponent, LayoutComponent } from '@/commons/components';
   selector: 'vy-root',
   imports: [RouterOutlet, LayoutComponent, HeaderComponent],
   template: `
-    <vy-layout>
+    <ng-template #header>
       <vy-header />
+    </ng-template>
+    <ng-template #main>
       <router-outlet />
-    </vy-layout>
+    </ng-template>
+    <vy-layout [headerTemplate]="header" [mainTemplate]="main" />
   `,
 })
 export class App {}
