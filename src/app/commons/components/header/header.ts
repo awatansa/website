@@ -54,7 +54,7 @@ import { GlobalStore } from '@/core/store';
             [ariaLabel]="'Settings'"
             [attr.aria-haspopup]="'menu'"
             [attr.aria-expanded]="settingsMenuVisible()"
-            (onClick)="settingsMenu.toggle($event)"
+            (onClick)="openSettingsMenu($event)"
           />
         </div>
       </ng-template>
@@ -76,5 +76,9 @@ export class HeaderComponent {
 
   protected onThemeChange(event: { checked: boolean }): void {
     this.store.setTheme(event.checked ? 'dark' : 'light');
+  }
+
+  protected openSettingsMenu(event: Event): void {
+    this.settingsMenu()?.toggle(event);
   }
 }

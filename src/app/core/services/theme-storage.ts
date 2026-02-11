@@ -1,6 +1,6 @@
 import { Injectable, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { LocalStorageSyncService } from './local-storage-sync';
+import { LocalStorageSyncService } from '@/core/services/local-storage-sync';
 
 export type Theme = 'light' | 'dark';
 

@@ -1,7 +1,7 @@
 import { inject } from "@angular/core";
 import { patchState, signalStore, withState, withMethods, withHooks } from "@ngrx/signals";
-import { DocumentService } from "../services/document";
-import { ThemeStorageService } from "../services/theme-storage";
+import { DocumentService } from '@/core/services/document';
+import { ThemeStorageService } from '@/core/services/theme-storage';
 
 export interface GlobalState {
     theme: 'light' | 'dark';

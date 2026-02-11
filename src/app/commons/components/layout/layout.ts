@@ -1,10 +1,10 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   input,
   type TemplateRef,
 } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'vy-layout',

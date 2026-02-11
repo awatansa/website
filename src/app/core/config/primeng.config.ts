@@ -24,4 +24,4 @@ export const primeNgConfig: PrimeNGConfigType = {
 /**
  * Environment providers for PrimeNG. Add to ApplicationConfig.providers.
  */
-export const primeNgProviders = () => providePrimeNG(primeNgConfig);
+export const primeNgProviders = (config?: PrimeNGConfigType) => providePrimeNG({ ...primeNgConfig, ...config });

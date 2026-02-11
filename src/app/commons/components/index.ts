@@ -1,2 +1,2 @@
-export { HeaderComponent } from './header/header';
-export { LayoutComponent } from './layout/layout';
+export { HeaderComponent } from '@/commons/components/header/header';
+export { LayoutComponent } from '@/commons/components/layout/layout';
