@@ -51,4 +51,19 @@ export class LocalStorageSyncService {
       // Ignore quota or serialization errors
     }
   }
+
+  /**
+   * Removes a value from local storage by key.
+   * @param key - Storage key (without prefix)
+   */
+  remove(key: string): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    try {
+      localStorage.removeItem(this.prefixedKey(key));
+    } catch {
+      // Ignore errors
+    }
+  }
 }

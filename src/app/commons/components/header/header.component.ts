@@ -5,7 +5,6 @@ import { NavMenuConfig } from '@/core/menu/nav-menu.config';
 
 @Component({
   selector: 'vy-header',
-  standalone: true,
   imports: [MegaMenu, RouterModule],
   host: {
     class: 'flex w-full items-center bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700',

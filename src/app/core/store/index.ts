@@ -1,5 +1,5 @@
 import { inject } from "@angular/core";
-import { patchState, signalStore, withState, withMethods } from "@ngrx/signals";
+import { patchState, signalStore, withState, withMethods, withHooks } from "@ngrx/signals";
 import { DocumentService } from "../services/document";
 import { ThemeStorageService } from "../services/theme-storage";
 
@@ -20,9 +20,18 @@ export const GlobalStore = signalStore(
             toggleDarkMode: () => {
                 const nextTheme = store.theme() === 'light' ? 'dark' : 'light';
                 patchState(store, { theme: nextTheme });
-                documentService.toggleDarkMode();
+                documentService.applyTheme(nextTheme);
                 themeStorage.setTheme(nextTheme);
             },
         };
+    }),
+    withHooks({
+        onInit(store) {
+            const themeStorage = inject(ThemeStorageService);
+            const documentService = inject(DocumentService);
+            const initialTheme = themeStorage.getTheme();
+            patchState(store, { theme: initialTheme });
+            documentService.applyTheme(initialTheme);
+        },
     })
 );

@@ -1,4 +1,5 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { LocalStorageSyncService } from './local-storage-sync';
 
 export type Theme = 'light' | 'dark';
@@ -10,20 +11,40 @@ const THEME_STORAGE_KEY = 'theme';
 })
 export class ThemeStorageService {
   private readonly storage = inject(LocalStorageSyncService);
+  private readonly platformId = inject(PLATFORM_ID);
 
   /**
-   * Gets the persisted theme from local storage.
-   * @param defaultValue - Optional default when no value is stored (e.g. 'light')
+   * Returns the current system preference (prefers-color-scheme).
+   * Falls back to 'light' when not in a browser (e.g. SSR).
    */
-  getTheme(defaultValue?: Theme): Theme {
-    const value = this.storage.get<Theme>(THEME_STORAGE_KEY, defaultValue);
-    return value === 'dark' || value === 'light' ? value : (defaultValue ?? 'light');
+  getSystemTheme(): Theme {
+    if (!isPlatformBrowser(this.platformId)) {
+      return 'light';
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
   /**
-   * Saves the theme to local storage and keeps it in sync.
+   * Gets the theme: stored value if present, otherwise system theme.
+   */
+  getTheme(): Theme {
+    const stored = this.storage.get<Theme>(THEME_STORAGE_KEY);
+    if (stored === 'dark' || stored === 'light') {
+      return stored;
+    }
+    return this.getSystemTheme();
+  }
+
+  /**
+   * Persists the theme only when it differs from the system theme.
+   * When the user selects the current system theme, the stored value is cleared
+   * so the app follows system preference again.
    */
   setTheme(theme: Theme): void {
-    this.storage.set(THEME_STORAGE_KEY, theme);
+    if (theme === this.getSystemTheme()) {
+      this.storage.remove(THEME_STORAGE_KEY);
+    } else {
+      this.storage.set(THEME_STORAGE_KEY, theme);
+    }
   }
 }
