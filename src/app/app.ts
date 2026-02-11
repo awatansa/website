@@ -1,16 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ToggleSwitch } from 'primeng/toggleswitch';
-import { LayoutComponent } from '@/commons/components';
-import { GlobalStore } from '@/core/store';
+import { HeaderComponent, LayoutComponent } from '@/commons/components';
 
 @Component({
   selector: 'vy-root',
-  imports: [RouterOutlet, ToggleSwitch, LayoutComponent],
+  imports: [RouterOutlet, LayoutComponent, HeaderComponent],
   template: `
     <vy-layout>
       <header>
-        <p-toggle-switch (onChange)="store.toggleDarkMode()" />
+        <vy-header />
       </header>
       <main>
         <router-outlet />
@@ -18,6 +16,4 @@ import { GlobalStore } from '@/core/store';
     </vy-layout>
   `,
 })
-export class App {
-  protected readonly store = inject(GlobalStore)
-}
+export class App {}

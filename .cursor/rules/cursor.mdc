@@ -1,7 +1,6 @@
 ---
-context: true
-priority: high
-scope: project
+description: 
+alwaysApply: true
 ---
 
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
@@ -19,6 +18,7 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Use signals for state management
 - Implement lazy loading for feature routes
 - Do NOT use the `@HostBinding` and `@HostListener` decorators. Put host bindings inside the `host` object of the `@Component` or `@Directive` decorator instead
+- Do NOT use 2016 file naming pattern such as home.component.ts or api.service.ts. Simply use components/home.ts or services/api.ts etc. Same goes for pages, decoretors, pipe etc.
 - Use `NgOptimizedImage` for all static images.
   - `NgOptimizedImage` does not work for inline base64 images.
 
@@ -45,6 +45,7 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Use `computed()` for derived state
 - Keep state transformations pure and predictable
 - Do NOT use `mutate` on signals, use `update` or `set` instead
+- Prefer @ngrx/signalstore for all state manegement.
 
 ## Templates
 
