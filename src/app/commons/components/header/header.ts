@@ -3,24 +3,24 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import type { MenuItem } from 'primeng/api';
 import { PrimeTemplate } from 'primeng/api';
+import { Button } from 'primeng/button';
 import { Menu } from 'primeng/menu';
-import { MegaMenu } from 'primeng/megamenu';
+import { Menubar } from 'primeng/menubar';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { NavMenuConfig } from '@/core/menu/nav-menu.config';
 import { GlobalStore } from '@/core/store';
 
 @Component({
   selector: 'vy-header',
-  imports: [MegaMenu, RouterModule, PrimeTemplate, ToggleSwitch, FormsModule, Menu],
+  imports: [Menubar, RouterModule, PrimeTemplate, ToggleSwitch, FormsModule, Menu, Button],
   host: {
     class:
-      'flex w-full items-center bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700 outline-none [&_.p-megamenu]:border-0 [&_.p-megamenu]:shadow-none [&_.p-megamenu]:outline-none',
+      'flex w-full items-center',
   },
   template: `
-    <p-megaMenu
+    <p-menubar
       [model]="menuModel"
-      orientation="horizontal"
-      class="w-full border-0 rounded-none bg-transparent shadow-none [&_.p-megamenu-root-list]:flex [&_.p-megamenu-root-list]:flex-wrap [&_.p-megamenu-root-list]:gap-0 [&_.p-megamenu-root-list]:border-0 [&_.p-megamenu-root-list]:bg-transparent [&_.p-megamenu-item]:border-0 [&_.p-megamenu-submenu-label]:border-0"
+      class="w-full border-0 rounded-none"
       [attr.aria-label]="'Main navigation'"
     >
       <ng-template pTemplate="end">
@@ -49,19 +49,16 @@ import { GlobalStore } from '@/core/store';
               </div>
             </ng-template>
           </p-menu>
-          <button
-            type="button"
-            class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-500"
-            [attr.aria-label]="'Settings'"
+          <p-button
+            icon="pi pi-cog"
+            [ariaLabel]="'Settings'"
             [attr.aria-haspopup]="'menu'"
             [attr.aria-expanded]="settingsMenuVisible()"
-            (click)="settingsMenu.toggle($event)"
-          >
-            <span class="pi pi-cog" aria-hidden="true"></span>
-          </button>
+            (onClick)="settingsMenu.toggle($event)"
+          />
         </div>
       </ng-template>
-    </p-megaMenu>
+    </p-menubar>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
