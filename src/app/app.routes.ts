@@ -12,7 +12,17 @@ export const routes: Routes = [
       },
       {
         path: 'casual',
-        loadComponent: () => import('@/features/games/casual').then((m) => m.GamesCasualFeature),
+        loadComponent: () => import('@/features/games/casual-layout').then((m) => m.GamesCasualLayout),
+        children: [
+          {
+            path: '',
+            loadComponent: () => import('@/features/games/casual').then((m) => m.GamesCasualFeature),
+          },
+          {
+            path: 'tic-tac-toe',
+            loadComponent: () => import('@/features/games/tic-tac-toe').then((m) => m.TicTacToeFeature),
+          },
+        ],
       },
       {
         path: 'puzzle',

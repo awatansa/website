@@ -22,7 +22,13 @@ export class NavMenuConfig {
         label: 'Games',
         routerLink: '/games',
         items: [
-          { label: 'Casual', routerLink: '/games/casual' },
+          {
+            label: 'Casual',
+            routerLink: '/games/casual',
+            items: [
+              { label: 'Tic-Tac-Toe', routerLink: '/games/casual/tic-tac-toe' },
+            ],
+          },
           { label: 'Puzzle', routerLink: '/games/puzzle' },
         ],
       },
