@@ -17,27 +17,30 @@ export class NavMenuConfig {
 
   private buildModel(): MenuItem[] {
     return [
-      { label: 'Home', routerLink: '/' },
+      { label: 'Home', icon: 'pi pi-home', routerLink: '/' },
       {
         label: 'Games',
+        icon: 'pi pi-th-large',
         items: [
           {
             label: 'Casual',
+            icon: 'pi pi-play',
             items: [
-              { label: 'Tic-Tac-Toe', routerLink: '/games/casual/tic-tac-toe' },
+              { label: 'Tic-Tac-Toe', icon: 'pi pi-stop', routerLink: '/games/casual/tic-tac-toe' },
             ],
           },
-          { label: 'Puzzle', routerLink: '/games/puzzle' },
+          { label: 'Puzzle', icon: 'pi pi-puzzle-piece', routerLink: '/games/puzzle' },
         ],
       },
       {
         label: 'Tools',
+        icon: 'pi pi-wrench',
         items: [
-          { label: 'Productivity Tools', routerLink: '/tools/productivity' },
-          { label: 'Developer Tools', routerLink: '/tools/developer' },
+          { label: 'Productivity Tools', icon: 'pi pi-briefcase', routerLink: '/tools/productivity' },
+          { label: 'Developer Tools', icon: 'pi pi-code', routerLink: '/tools/developer' },
         ],
       },
-      { label: 'About', routerLink: '/about' },
+      { label: 'About', icon: 'pi pi-info-circle', routerLink: '/about' },
     ];
   }
 }
