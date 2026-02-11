@@ -1,0 +1,35 @@
+{
+  "intro": {
+    "title": "About me",
+    "description": "I'm a developer with experience across the stack—from backend services and databases to modern frontends and deployment pipelines. I focus on building reliable, maintainable systems and clear user experiences."
+  },
+  "skillGroups": [
+    {
+      "title": "Backend",
+      "slug": "backend",
+      "skills": ["Java", "Spring Boot", "SQL", "PostgreSQL"]
+    },
+    {
+      "title": "Frontend",
+      "slug": "frontend",
+      "skills": ["Angular", "React"]
+    },
+    {
+      "title": "DevOps & GitOps",
+      "slug": "devops-gitops",
+      "skills": ["Docker", "Kubernetes", "ArgoCD", "Git", "GitLab", "GitLab Runners"]
+    },
+    {
+      "title": "AI & development tools",
+      "slug": "ai-tools",
+      "skills": [
+        "Cursor",
+        "JetBrains",
+        "GitHub Copilot",
+        "Gemini",
+        "ACP agents",
+        "MCP protocols development"
+      ]
+    }
+  ]
+}

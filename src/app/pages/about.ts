@@ -1,8 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AboutDataService, AboutFeatureComponent, AboutStore } from '@/features/about';
 
 @Component({
   selector: 'vy-about-page',
-  template: `<p class="p-4">About</p>`,
+  imports: [AboutFeatureComponent],
+  providers: [AboutDataService, AboutStore],
+  template: `<vy-about-feature />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutPage {}
