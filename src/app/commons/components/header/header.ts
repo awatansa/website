@@ -13,13 +13,14 @@ import { GlobalStore } from '@/core/store';
   selector: 'vy-header',
   imports: [MegaMenu, RouterModule, PrimeTemplate, ToggleSwitch, FormsModule, Menu],
   host: {
-    class: 'flex w-full items-center bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700',
+    class:
+      'flex w-full items-center bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-700 outline-none [&_.p-megamenu]:border-0 [&_.p-megamenu]:shadow-none [&_.p-megamenu]:outline-none',
   },
   template: `
     <p-megaMenu
       [model]="menuModel"
       orientation="horizontal"
-      class="w-full border-0 rounded-none bg-transparent [&_.p-megamenu-root-list]:flex [&_.p-megamenu-root-list]:flex-wrap [&_.p-megamenu-root-list]:gap-0 [&_.p-megamenu-root-list]:border-0 [&_.p-megamenu-root-list]:bg-transparent [&_.p-megamenu-item]:border-0 [&_.p-megamenu-submenu-label]:border-0"
+      class="w-full border-0 rounded-none bg-transparent shadow-none [&_.p-megamenu-root-list]:flex [&_.p-megamenu-root-list]:flex-wrap [&_.p-megamenu-root-list]:gap-0 [&_.p-megamenu-root-list]:border-0 [&_.p-megamenu-root-list]:bg-transparent [&_.p-megamenu-item]:border-0 [&_.p-megamenu-submenu-label]:border-0"
       [attr.aria-label]="'Main navigation'"
     >
       <ng-template pTemplate="end">
