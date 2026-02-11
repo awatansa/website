@@ -20,11 +20,9 @@ export class NavMenuConfig {
       { label: 'Home', routerLink: '/' },
       {
         label: 'Games',
-        routerLink: '/games',
         items: [
           {
             label: 'Casual',
-            routerLink: '/games/casual',
             items: [
               { label: 'Tic-Tac-Toe', routerLink: '/games/casual/tic-tac-toe' },
             ],
@@ -34,7 +32,6 @@ export class NavMenuConfig {
       },
       {
         label: 'Tools',
-        routerLink: '/tools',
         items: [
           { label: 'Productivity Tools', routerLink: '/tools/productivity' },
           { label: 'Developer Tools', routerLink: '/tools/developer' },
