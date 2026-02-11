@@ -3,4 +3,5 @@ export {
   primaryPalettePrimitive,
   primaryPaletteSemantic,
   primeNgThemePresetOverrides,
-} from './prime-ng-theme.config';
+} from '@/core/config/prime-ng-theme.config';
+export { DARK_THEME_CLASS, primeNgConfig, primeNgProviders } from '@/core/config/primeng.config';
