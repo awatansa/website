@@ -18,8 +18,36 @@ export class NavMenuConfig {
   private buildModel(): MegaMenuItem[] {
     return [
       { label: 'Home', routerLink: '/' },
-      { label: 'Games', routerLink: '/games' },
-      { label: 'Tools', routerLink: '/tools' },
+      {
+        label: 'Games',
+        routerLink: '/games',
+        items: [
+          [
+            {
+              label: 'Games',
+              items: [
+                { label: 'Casual', routerLink: '/games/casual' },
+                { label: 'Puzzle', routerLink: '/games/puzzle' },
+              ],
+            },
+          ],
+        ],
+      },
+      {
+        label: 'Tools',
+        routerLink: '/tools',
+        items: [
+          [
+            {
+              label: 'Tools',
+              items: [
+                { label: 'Productivity Tools', routerLink: '/tools/productivity' },
+                { label: 'Developer Tools', routerLink: '/tools/developer' },
+              ],
+            },
+          ],
+        ],
+      },
       { label: 'About', routerLink: '/about' },
     ];
   }
