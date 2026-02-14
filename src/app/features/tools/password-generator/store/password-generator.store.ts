@@ -89,6 +89,9 @@ export const PasswordGeneratorStore = signalStore(
       if (!hasAny) return 'Select at least one character type.';
       return null;
     },
+    /** Characters that will be used for symbols when Symbols is checked (custom or default). */
+    effectiveSymbols: () =>
+      store.includeSymbols() ? (store.customSymbols().trim() || SYMBOLS) : '',
   })),
   withMethods((store) => ({
     setCount(value: number) {

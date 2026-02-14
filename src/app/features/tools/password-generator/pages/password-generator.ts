@@ -142,6 +142,25 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
               </label>
             </div>
           </div>
+          @if (store.includeLowercase() || store.includeUppercase() || store.includeNumbers() || store.includeSymbols()) {
+            <div class="mt-2 rounded-md border border-surface-200 bg-surface-50 p-3 dark:border-surface-700 dark:bg-surface-800" role="status" aria-live="polite">
+              <p class="text-surface-700 mb-1.5 text-sm font-medium">Characters that will be included</p>
+              <ul class="text-surface-600 flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                @if (store.includeLowercase()) {
+                  <li>Lowercase: a–z</li>
+                }
+                @if (store.includeUppercase()) {
+                  <li>Uppercase: A–Z</li>
+                }
+                @if (store.includeNumbers()) {
+                  <li>Numbers: 0–9</li>
+                }
+                @if (store.includeSymbols() && store.effectiveSymbols()) {
+                  <li class="flex-1 basis-full font-mono" id="included-symbols-preview">Symbols: {{ store.effectiveSymbols() }}</li>
+                }
+              </ul>
+            </div>
+          }
         </fieldset>
 
         <div class="flex flex-col gap-2">
