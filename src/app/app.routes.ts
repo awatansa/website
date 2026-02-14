@@ -58,6 +58,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('@/features/tools/base64-encode-decode').then((m) => m.Base64EncodeDecodeFeature),
       },
+      {
+        path: 'url-encode-decode',
+        loadComponent: () =>
+          import('@/features/tools/url-encode-decode').then((m) => m.UrlEncodeDecodeFeature),
+      },
     ],
   },
   { path: 'about', loadComponent: () => import('@/features/about/pages/about').then((m) => m.AboutPage) },
