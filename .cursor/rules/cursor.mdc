@@ -21,6 +21,9 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Do NOT use 2016 file naming pattern such as home.component.ts or api.service.ts. Simply use components/home.ts or services/api.ts etc. Same goes for pages, decoretors, pipe etc.
 - Use `NgOptimizedImage` for all static images.
   - `NgOptimizedImage` does not work for inline base64 images.
+- Do NOT create any file wil suffix pattern like `*.component.ts` or `*.service.ts`, instead just put those file under the corrosponding folders.
+- Use tailwind classes instead of creating new style tags
+- Prefer using @ngrx/signals for logic implementation and state management.
 
 ## Accessibility Requirements
 
