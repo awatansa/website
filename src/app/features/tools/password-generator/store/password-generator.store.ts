@@ -12,6 +12,7 @@ export interface PasswordGeneratorState {
   includeUppercase: boolean;
   includeNumbers: boolean;
   includeSymbols: boolean;
+  customSymbols: string;
   passwords: string[];
 }
 
@@ -27,6 +28,7 @@ const initialState: PasswordGeneratorState = {
   includeUppercase: true,
   includeNumbers: true,
   includeSymbols: true,
+  customSymbols: '',
   passwords: [],
 };
 
@@ -35,7 +37,10 @@ function buildCharacterSet(state: PasswordGeneratorState): string {
   if (state.includeLowercase) set += LOWER;
   if (state.includeUppercase) set += UPPER;
   if (state.includeNumbers) set += NUMBERS;
-  if (state.includeSymbols) set += SYMBOLS;
+  if (state.includeSymbols) {
+    const symbols = state.customSymbols.trim() || SYMBOLS;
+    if (symbols.length > 0) set += symbols;
+  }
   return set;
 }
 
@@ -106,6 +111,9 @@ export const PasswordGeneratorStore = signalStore(
     setIncludeSymbols(value: boolean) {
       patchState(store, { includeSymbols: value });
     },
+    setCustomSymbols(value: string) {
+      patchState(store, { customSymbols: value ?? '' });
+    },
     generate() {
       if (!store.canGenerate()) return;
       const count = store.count();
@@ -117,6 +125,7 @@ export const PasswordGeneratorStore = signalStore(
         includeUppercase: store.includeUppercase(),
         includeNumbers: store.includeNumbers(),
         includeSymbols: store.includeSymbols(),
+        customSymbols: store.customSymbols(),
         passwords: [],
       };
       const chars = buildCharacterSet(state);

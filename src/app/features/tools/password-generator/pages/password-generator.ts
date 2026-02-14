@@ -6,6 +6,7 @@ import { InputNumber } from 'primeng/inputnumber';
 import { Checkbox } from 'primeng/checkbox';
 import { InputText } from 'primeng/inputtext';
 import { Message } from 'primeng/message';
+import { MessageService } from 'primeng/api';
 import { PasswordGeneratorStore } from '@/features/tools/password-generator/store';
 
 @Component({
@@ -143,6 +144,29 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
           </div>
         </fieldset>
 
+        <div class="flex flex-col gap-2">
+          <label id="custom-symbols-label" class="text-surface-700 text-sm font-medium" for="custom-symbols-input">
+            Special characters to include
+          </label>
+          <span class="text-surface-600 text-xs">
+            Used when Symbols is checked. Leave empty to use the default symbol set.
+          </span>
+          <input
+            id="custom-symbols-input"
+            type="text"
+            pInputText
+            [ngModel]="store.customSymbols()"
+            (ngModelChange)="store.setCustomSymbols($event)"
+            class="font-mono text-sm"
+            placeholder="e.g. !&#64;#$%^&amp;*()"
+            [attr.aria-labelledby]="'custom-symbols-label'"
+            aria-describedby="custom-symbols-desc"
+          />
+          <span id="custom-symbols-desc" class="sr-only">
+            Optional. Characters you want as symbols in generated passwords. Empty uses the default set.
+          </span>
+        </div>
+
         @if (store.errorMessage(); as err) {
           <p-message
             severity="error"
@@ -211,8 +235,15 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
 })
 export class PasswordGeneratorFeature {
   protected readonly store = inject(PasswordGeneratorStore);
+  private readonly messageService = inject(MessageService);
 
   protected copyToClipboard(text: string): void {
-    void navigator.clipboard.writeText(text);
+    void navigator.clipboard.writeText(text).then(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Copied!',
+        life: 2000,
+      });
+    });
   }
 }

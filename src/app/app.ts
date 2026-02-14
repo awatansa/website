@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Toast } from 'primeng/toast';
 import { HeaderComponent, LayoutComponent } from '@/commons/components';
 
 @Component({
   selector: 'vy-root',
-  imports: [RouterOutlet, LayoutComponent, HeaderComponent],
+  imports: [RouterOutlet, Toast, LayoutComponent, HeaderComponent],
   template: `
+    <p-toast position="top-center" [life]="2000" />
     <ng-template #header>
       <vy-header />
     </ng-template>
@@ -16,4 +18,4 @@ import { HeaderComponent, LayoutComponent } from '@/commons/components';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App { }
+export class App {}
