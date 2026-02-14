@@ -27,6 +27,11 @@ export class NavMenuConfig {
             icon: 'pi pi-play',
             items: [
               { label: 'Tic-Tac-Toe', icon: 'pi pi-stop', routerLink: '/games/casual/tic-tac-toe' },
+              {
+                label: 'Dots and Boxes',
+                icon: 'pi pi-th-large',
+                routerLink: '/games/casual/dots-and-boxes',
+              },
             ],
           },
           { label: 'Puzzle', icon: 'pi pi-puzzle-piece', routerLink: '/games/puzzle' },
@@ -38,6 +43,11 @@ export class NavMenuConfig {
         items: [
           { label: 'Productivity Tools', icon: 'pi pi-briefcase', routerLink: '/tools/productivity' },
           { label: 'Developer Tools', icon: 'pi pi-code', routerLink: '/tools/developer' },
+          {
+            label: 'Base64 Encode / Decode',
+            icon: 'pi pi-key',
+            routerLink: '/tools/base64-encode-decode',
+          },
         ],
       },
       { label: 'About', icon: 'pi pi-info-circle', routerLink: '/about' },

@@ -52,5 +52,10 @@ export class GamesCasualFeature {
       description: 'Classic 3×3 grid. Get three in a row to win.',
       routerLink: '/games/casual/tic-tac-toe',
     },
+    {
+      title: 'Dots and Boxes',
+      description: 'Take turns drawing lines. Complete a box to score and play again.',
+      routerLink: '/games/casual/dots-and-boxes',
+    },
   ];
 }

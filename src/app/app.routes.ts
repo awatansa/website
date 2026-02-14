@@ -22,6 +22,11 @@ export const routes: Routes = [
             path: 'tic-tac-toe',
             loadComponent: () => import('@/features/games/tic-tac-toe').then((m) => m.TicTacToeFeature),
           },
+          {
+            path: 'dots-and-boxes',
+            loadComponent: () =>
+              import('@/features/games/dots-and-boxes').then((m) => m.DotsAndBoxesFeature),
+          },
         ],
       },
       {
@@ -47,6 +52,11 @@ export const routes: Routes = [
         path: 'developer',
         loadComponent: () =>
           import('@/features/tools/components/developer').then((m) => m.ToolsDeveloperFeature),
+      },
+      {
+        path: 'base64-encode-decode',
+        loadComponent: () =>
+          import('@/features/tools/base64-encode-decode').then((m) => m.Base64EncodeDecodeFeature),
       },
     ],
   },
