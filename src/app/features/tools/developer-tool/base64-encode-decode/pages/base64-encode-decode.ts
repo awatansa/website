@@ -5,8 +5,8 @@ import { Textarea } from 'primeng/textarea';
 import { SelectButton } from 'primeng/selectbutton';
 import { Message } from 'primeng/message';
 import { PageLayoutComponent } from '@/commons/components';
-import { Base64Store } from '@/features/tools/base64-encode-decode/store';
-import type { TransformMode } from '@/features/tools/base64-encode-decode/store';
+import { Base64Store } from '@/features/tools/developer-tool/base64-encode-decode/store';
+import type { TransformMode } from '@/features/tools/developer-tool/base64-encode-decode/store';
 
 const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
   { label: 'Transform on input', value: 'live' },

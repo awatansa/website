@@ -42,26 +42,36 @@ export class NavMenuConfig {
         icon: 'pi pi-wrench',
         items: [
           { label: 'Productivity Tools', icon: 'pi pi-briefcase', routerLink: '/tools/productivity' },
-          { label: 'Developer Tools', icon: 'pi pi-code', routerLink: '/tools/developer' },
           {
-            label: 'Base64 Encode / Decode',
-            icon: 'pi pi-key',
-            routerLink: '/tools/base64-encode-decode',
-          },
-          {
-            label: 'URL Encode / Decode',
-            icon: 'pi pi-link',
-            routerLink: '/tools/url-encode-decode',
-          },
-          {
-            label: 'Password Generator',
-            icon: 'pi pi-lock',
-            routerLink: '/tools/password-generator',
-          },
-          {
-            label: 'Regular Expression Check',
-            icon: 'pi pi-search',
-            routerLink: '/tools/regex',
+            label: 'Developer Tools',
+            icon: 'pi pi-code',
+            items: [
+              {
+                label: 'Developer Tools Home',
+                icon: 'pi pi-list',
+                routerLink: '/tools/developer-tool',
+              },
+              {
+                label: 'Base64 Encode / Decode',
+                icon: 'pi pi-key',
+                routerLink: '/tools/developer-tool/base64-encode-decode',
+              },
+              {
+                label: 'URL Encode / Decode',
+                icon: 'pi pi-link',
+                routerLink: '/tools/developer-tool/url-encode-decode',
+              },
+              {
+                label: 'Password Generator',
+                icon: 'pi pi-lock',
+                routerLink: '/tools/developer-tool/password-generator',
+              },
+              {
+                label: 'Regular Expression Check',
+                icon: 'pi pi-search',
+                routerLink: '/tools/developer-tool/regex',
+              },
+            ],
           },
         ],
       },

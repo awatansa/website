@@ -5,8 +5,8 @@ import { Textarea } from 'primeng/textarea';
 import { SelectButton } from 'primeng/selectbutton';
 import { Message } from 'primeng/message';
 import { PageLayoutComponent } from '@/commons/components';
-import { UrlEncodeDecodeStore } from '@/features/tools/url-encode-decode/store';
-import type { TransformMode } from '@/features/tools/url-encode-decode/store';
+import { UrlEncodeDecodeStore } from '@/features/tools/developer-tool/url-encode-decode/store';
+import type { TransformMode } from '@/features/tools/developer-tool/url-encode-decode/store';
 
 const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
   { label: 'Transform on input', value: 'live' },

@@ -49,29 +49,46 @@ export const routes: Routes = [
           import('@/features/tools/components/productivity').then((m) => m.ToolsProductivityFeature),
       },
       {
-        path: 'developer',
+        path: 'developer-tool',
         loadComponent: () =>
-          import('@/features/tools/components/developer').then((m) => m.ToolsDeveloperFeature),
-      },
-      {
-        path: 'base64-encode-decode',
-        loadComponent: () =>
-          import('@/features/tools/base64-encode-decode').then((m) => m.Base64EncodeDecodeFeature),
-      },
-      {
-        path: 'url-encode-decode',
-        loadComponent: () =>
-          import('@/features/tools/url-encode-decode').then((m) => m.UrlEncodeDecodeFeature),
-      },
-      {
-        path: 'password-generator',
-        loadComponent: () =>
-          import('@/features/tools/password-generator').then((m) => m.PasswordGeneratorFeature),
-      },
-      {
-        path: 'regex',
-        loadComponent: () =>
-          import('@/features/tools/regex').then((m) => m.RegexCheckFeature),
+          import('@/features/tools/developer-tool/components/developer-tool-layout').then(
+            (m) => m.DeveloperToolLayoutComponent
+          ),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('@/features/tools/developer-tool/pages/developer-tool-index').then(
+                (m) => m.DeveloperToolIndexPage
+              ),
+          },
+          {
+            path: 'base64-encode-decode',
+            loadComponent: () =>
+              import('@/features/tools/developer-tool/base64-encode-decode').then(
+                (m) => m.Base64EncodeDecodeFeature
+              ),
+          },
+          {
+            path: 'url-encode-decode',
+            loadComponent: () =>
+              import('@/features/tools/developer-tool/url-encode-decode').then(
+                (m) => m.UrlEncodeDecodeFeature
+              ),
+          },
+          {
+            path: 'password-generator',
+            loadComponent: () =>
+              import('@/features/tools/developer-tool/password-generator').then(
+                (m) => m.PasswordGeneratorFeature
+              ),
+          },
+          {
+            path: 'regex',
+            loadComponent: () =>
+              import('@/features/tools/developer-tool/regex').then((m) => m.RegexCheckFeature),
+          },
+        ],
       },
     ],
   },

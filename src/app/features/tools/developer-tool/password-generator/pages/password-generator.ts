@@ -6,7 +6,7 @@ import { Checkbox } from 'primeng/checkbox';
 import { InputText } from 'primeng/inputtext';
 import { Message } from 'primeng/message';
 import { CopyButtonComponent, PageLayoutComponent } from '@/commons/components';
-import { PasswordGeneratorStore } from '@/features/tools/password-generator/store';
+import { PasswordGeneratorStore } from '@/features/tools/developer-tool/password-generator/store';
 
 @Component({
   selector: 'vy-password-generator',

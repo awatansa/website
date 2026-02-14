@@ -6,7 +6,7 @@ import { Panel } from 'primeng/panel';
 import { Message } from 'primeng/message';
 import { Button } from 'primeng/button';
 import { PageLayoutComponent } from '@/commons/components';
-import { RegexCheckStore } from '@/features/tools/regex/store';
+import { RegexCheckStore } from '@/features/tools/developer-tool/regex/store';
 
 const REGEX_GUIDE = [
   { tip: '. matches any character', example: '.' },
