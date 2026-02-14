@@ -53,6 +53,11 @@ export class NavMenuConfig {
             icon: 'pi pi-link',
             routerLink: '/tools/url-encode-decode',
           },
+          {
+            label: 'Password Generator',
+            icon: 'pi pi-lock',
+            routerLink: '/tools/password-generator',
+          },
         ],
       },
       { label: 'About', icon: 'pi pi-info-circle', routerLink: '/about' },

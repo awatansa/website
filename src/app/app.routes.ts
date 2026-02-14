@@ -63,6 +63,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('@/features/tools/url-encode-decode').then((m) => m.UrlEncodeDecodeFeature),
       },
+      {
+        path: 'password-generator',
+        loadComponent: () =>
+          import('@/features/tools/password-generator').then((m) => m.PasswordGeneratorFeature),
+      },
     ],
   },
   { path: 'about', loadComponent: () => import('@/features/about/pages/about').then((m) => m.AboutPage) },
