@@ -1,87 +1,29 @@
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import {
+  createInitialState,
+  horizontalEdgeIndex,
+  verticalEdgeIndex,
+  boxEdgeIndices,
+  boxesTouchingHorizontalEdge,
+  boxesTouchingVerticalEdge,
+  type DotsAndBoxesState,
+  type PlayerId,
+} from './dots-and-boxes-game.utils';
+import {
+  getCellType as getCellTypeUtil,
+  gridRowsCss,
+  gridColsCss,
+  rowIndices as rowIndicesUtil,
+  colIndices as colIndicesUtil,
+  horizontalEdgeRowCol,
+  verticalEdgeRowCol,
+  boxRowCol,
+} from './dots-and-boxes-grid.utils';
 
-export type PlayerId = 1 | 2;
+export type { PlayerId, DotsAndBoxesState };
 
 const DEFAULT_ROWS = 3;
 const DEFAULT_COLS = 3;
-
-function countHorizontal(rows: number, cols: number): number {
-  return (rows + 1) * cols;
-}
-
-function countVertical(rows: number, cols: number): number {
-  return rows * (cols + 1);
-}
-
-function hIndex(rows: number, cols: number, row: number, col: number): number {
-  return row * cols + col;
-}
-
-function vIndex(rows: number, cols: number, row: number, col: number): number {
-  return row * (cols + 1) + col;
-}
-
-/** Box (r, c) has top-left dot (r, c). Returns [hTop, hBottom, vLeft, vRight] indices. */
-function boxEdgeIndices(
-  rows: number,
-  cols: number,
-  boxRow: number,
-  boxCol: number
-): [number, number, number, number] {
-  const hTop = hIndex(rows, cols, boxRow, boxCol);
-  const hBottom = hIndex(rows, cols, boxRow + 1, boxCol);
-  const vLeft = vIndex(rows, cols, boxRow, boxCol);
-  const vRight = vIndex(rows, cols, boxRow, boxCol + 1);
-  return [hTop, hBottom, vLeft, vRight];
-}
-
-function boxesTouchingHorizontalEdge(
-  rows: number,
-  cols: number,
-  row: number,
-  col: number
-): Array<[number, number]> {
-  const result: Array<[number, number]> = [];
-  if (row > 0) result.push([row - 1, col]);
-  if (row < rows) result.push([row, col]);
-  return result;
-}
-
-function boxesTouchingVerticalEdge(
-  rows: number,
-  cols: number,
-  row: number,
-  col: number
-): Array<[number, number]> {
-  const result: Array<[number, number]> = [];
-  if (col > 0) result.push([row, col - 1]);
-  if (col < cols) result.push([row, col]);
-  return result;
-}
-
-export interface DotsAndBoxesState {
-  rows: number;
-  cols: number;
-  horizontalEdges: (PlayerId | null)[];
-  verticalEdges: (PlayerId | null)[];
-  boxes: (PlayerId | null)[];
-  currentPlayer: PlayerId;
-}
-
-function createInitialState(rows: number, cols: number): DotsAndBoxesState {
-  const numH = countHorizontal(rows, cols);
-  const numV = countVertical(rows, cols);
-  const numBoxes = rows * cols;
-  return {
-    rows,
-    cols,
-    horizontalEdges: Array(numH).fill(null),
-    verticalEdges: Array(numV).fill(null),
-    boxes: Array(numBoxes).fill(null),
-    currentPlayer: 1,
-  };
-}
-
 const initialState = createInitialState(DEFAULT_ROWS, DEFAULT_COLS);
 
 export const DotsAndBoxesStore = signalStore(
@@ -105,24 +47,67 @@ export const DotsAndBoxesStore = signalStore(
         }
         return `Player ${store.currentPlayer()}'s turn – draw a line`;
       },
+      gridRows: () => gridRowsCss(store.rows()),
+      gridCols: () => gridColsCss(store.cols()),
+      rowIndices: () => rowIndicesUtil(store.rows()),
+      colIndices: () => colIndicesUtil(store.cols()),
+      gridAriaLabel: () =>
+        `Game board, ${store.rows()} by ${store.cols()} boxes`,
     };
   }),
   withMethods((store) => {
-    const rows = () => store.rows();
-    const cols = () => store.cols();
+    const r = () => store.rows();
+    const c = () => store.cols();
     return {
+      getCellType(i: number, j: number) {
+        return getCellTypeUtil(i, j);
+      },
+      getHorizontalOwner(i: number, j: number): PlayerId | null {
+        const { row, col } = horizontalEdgeRowCol(i, j);
+        const idx = horizontalEdgeIndex(r(), c(), row, col);
+        return store.horizontalEdges()[idx];
+      },
+      getVerticalOwner(i: number, j: number): PlayerId | null {
+        const { row, col } = verticalEdgeRowCol(i, j);
+        const idx = verticalEdgeIndex(r(), c(), row, col);
+        return store.verticalEdges()[idx];
+      },
+      getBoxOwner(i: number, j: number): PlayerId | null {
+        const { row, col } = boxRowCol(i, j);
+        return store.boxes()[row * c() + col];
+      },
+      getHorizontalEdgeAriaLabel(i: number, j: number): string {
+        const owner = this.getHorizontalOwner(i, j);
+        if (owner !== null) return `Line claimed by Player ${owner}`;
+        if (store.gameOver()) return 'Game over';
+        return `Draw line – Player ${store.currentPlayer()}'s turn`;
+      },
+      getVerticalEdgeAriaLabel(i: number, j: number): string {
+        const owner = this.getVerticalOwner(i, j);
+        if (owner !== null) return `Line claimed by Player ${owner}`;
+        if (store.gameOver()) return 'Game over';
+        return `Draw line – Player ${store.currentPlayer()}'s turn`;
+      },
+      claimHorizontalEdgeAt(i: number, j: number) {
+        const { row, col } = horizontalEdgeRowCol(i, j);
+        this.claimHorizontalEdge(row, col);
+      },
+      claimVerticalEdgeAt(i: number, j: number) {
+        const { row, col } = verticalEdgeRowCol(i, j);
+        this.claimVerticalEdge(row, col);
+      },
       claimHorizontalEdge(row: number, col: number) {
-        const r = rows();
-        const c = cols();
-        const idx = hIndex(r, c, row, col);
+        const rows = r();
+        const cols = c();
+        const idx = horizontalEdgeIndex(rows, cols, row, col);
         const horizontal = store.horizontalEdges();
         if (horizontal[idx] !== null) return;
         const newH = [...horizontal];
         newH[idx] = store.currentPlayer();
         const newBoxes = [...store.boxes()];
         let claimedAny = false;
-        for (const [br, bc] of boxesTouchingHorizontalEdge(r, c, row, col)) {
-          const [hTop, hBottom, vLeft, vRight] = boxEdgeIndices(r, c, br, bc);
+        for (const [br, bc] of boxesTouchingHorizontalEdge(rows, cols, row, col)) {
+          const [hTop, hBottom, vLeft, vRight] = boxEdgeIndices(rows, cols, br, bc);
           const vert = store.verticalEdges();
           if (
             newH[hTop] !== null &&
@@ -130,7 +115,7 @@ export const DotsAndBoxesStore = signalStore(
             vert[vLeft] !== null &&
             vert[vRight] !== null
           ) {
-            newBoxes[br * c + bc] = store.currentPlayer();
+            newBoxes[br * cols + bc] = store.currentPlayer();
             claimedAny = true;
           }
         }
@@ -141,17 +126,17 @@ export const DotsAndBoxesStore = signalStore(
         });
       },
       claimVerticalEdge(row: number, col: number) {
-        const r = rows();
-        const c = cols();
-        const idx = vIndex(r, c, row, col);
+        const rows = r();
+        const cols = c();
+        const idx = verticalEdgeIndex(rows, cols, row, col);
         const vertical = store.verticalEdges();
         if (vertical[idx] !== null) return;
         const newV = [...vertical];
         newV[idx] = store.currentPlayer();
         const newBoxes = [...store.boxes()];
         let claimedAny = false;
-        for (const [br, bc] of boxesTouchingVerticalEdge(r, c, row, col)) {
-          const [hTop, hBottom, vLeft, vRight] = boxEdgeIndices(r, c, br, bc);
+        for (const [br, bc] of boxesTouchingVerticalEdge(rows, cols, row, col)) {
+          const [hTop, hBottom, vLeft, vRight] = boxEdgeIndices(rows, cols, br, bc);
           const hor = store.horizontalEdges();
           if (
             hor[hTop] !== null &&
@@ -159,7 +144,7 @@ export const DotsAndBoxesStore = signalStore(
             newV[vLeft] !== null &&
             newV[vRight] !== null
           ) {
-            newBoxes[br * c + bc] = store.currentPlayer();
+            newBoxes[br * cols + bc] = store.currentPlayer();
             claimedAny = true;
           }
         }
@@ -171,6 +156,9 @@ export const DotsAndBoxesStore = signalStore(
       },
       reset() {
         patchState(store, createInitialState(store.rows(), store.cols()));
+      },
+      setGridSize(rows: number, cols: number) {
+        patchState(store, createInitialState(rows, cols));
       },
     };
   })
