@@ -20,7 +20,7 @@ export const routes: Routes = [
           },
           {
             path: 'tic-tac-toe',
-            loadComponent: () => import('@/features/games/components/tic-tac-toe').then((m) => m.TicTacToeFeature),
+            loadComponent: () => import('@/features/games/tic-tac-toe').then((m) => m.TicTacToeFeature),
           },
         ],
       },

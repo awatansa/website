@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TicTacToeStore } from '@/features/games/components/tic-tac-toe/store';
+import { TicTacToeStore } from '@/features/games/tic-tac-toe/store';
 
 @Component({
   selector: 'vy-tic-tac-toe',
@@ -78,7 +78,7 @@ import { TicTacToeStore } from '@/features/games/components/tic-tac-toe/store';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TicTacToeUiComponent {
+export class TicTacToeBoardComponent {
   protected readonly store = inject(TicTacToeStore);
 
   protected getRowIndex(index: number): number {
