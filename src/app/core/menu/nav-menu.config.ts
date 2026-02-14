@@ -58,6 +58,11 @@ export class NavMenuConfig {
             icon: 'pi pi-lock',
             routerLink: '/tools/password-generator',
           },
+          {
+            label: 'Regular Expression Check',
+            icon: 'pi pi-search',
+            routerLink: '/tools/regex',
+          },
         ],
       },
       { label: 'About', icon: 'pi pi-info-circle', routerLink: '/about' },

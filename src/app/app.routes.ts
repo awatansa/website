@@ -68,6 +68,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('@/features/tools/password-generator').then((m) => m.PasswordGeneratorFeature),
       },
+      {
+        path: 'regex',
+        loadComponent: () =>
+          import('@/features/tools/regex').then((m) => m.RegexCheckFeature),
+      },
     ],
   },
   { path: 'about', loadComponent: () => import('@/features/about/pages/about').then((m) => m.AboutPage) },
