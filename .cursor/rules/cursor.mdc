@@ -24,6 +24,7 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Do NOT create any file wil suffix pattern like `*.component.ts` or `*.service.ts`, instead just put those file under the corrosponding folders.
 - Use tailwind classes instead of creating new style tags
 - Prefer using @ngrx/signals for logic implementation and state management.
+- This project uses Bun as the package manager and runtime. Prefer any command to use pattern for example `bunx -p @angular/cli ng serve`
 
 ## Accessibility Requirements
 

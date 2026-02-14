@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { InputText } from 'primeng/inputtext';
 import { Textarea } from 'primeng/textarea';
 import { Panel } from 'primeng/panel';
 import { Message } from 'primeng/message';
 import { Button } from 'primeng/button';
+import { PageLayoutComponent } from '@/commons/components';
 import { RegexCheckStore } from '@/features/tools/regex/store';
 
 const REGEX_GUIDE = [
@@ -20,13 +20,13 @@ const REGEX_GUIDE = [
 @Component({
   selector: 'vy-regex-check',
   imports: [
-    RouterLink,
     FormsModule,
     InputText,
     Textarea,
     Panel,
     Message,
     Button,
+    PageLayoutComponent,
   ],
   providers: [RegexCheckStore],
   host: {
@@ -34,24 +34,14 @@ const REGEX_GUIDE = [
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="mx-auto max-w-4xl p-6">
-      <nav class="mb-6" aria-label="Breadcrumb">
-        <a
-          routerLink="/tools"
-          class="text-primary hover:underline"
-          aria-label="Back to tools"
-        >
-          ← Tools
-        </a>
-      </nav>
-
-      <h1 class="text-surface-700 dark:text-surface-200 mb-2 text-2xl font-semibold" id="regex-heading">
-        Regular Expression Check
-      </h1>
-      <p class="text-surface-600 dark:text-surface-400 mb-6 text-sm">
-        Enter a regular expression and test text. Matches are highlighted; non-matching text is dimmed. View match count, capturing groups, and a short reference below.
-      </p>
-
+    <vy-page-layout
+      backLink="/tools"
+      backLabel="Tools"
+      heading="Regular Expression Check"
+      headingId="regex-heading"
+      description="Enter a regular expression and test text. Matches are highlighted; non-matching text is dimmed. View match count, capturing groups, and a short reference below."
+      maxWidth="4xl"
+    >
       <section class="mb-6 flex flex-col gap-4" aria-labelledby="inputs-heading">
         <h2 id="inputs-heading" class="text-surface-700 dark:text-surface-200 text-lg font-medium sr-only">
           Regex and test inputs
@@ -188,7 +178,7 @@ const REGEX_GUIDE = [
         (onClick)="store.clear()"
         [attr.aria-label]="'Clear regex, flags, and test text'"
       />
-    </div>
+    </vy-page-layout>
   `,
 })
 export class RegexCheckFeature {

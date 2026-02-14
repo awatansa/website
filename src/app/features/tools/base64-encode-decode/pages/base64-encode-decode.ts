@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Button } from 'primeng/button';
 import { Textarea } from 'primeng/textarea';
 import { SelectButton } from 'primeng/selectbutton';
 import { Message } from 'primeng/message';
+import { PageLayoutComponent } from '@/commons/components';
 import { Base64Store } from '@/features/tools/base64-encode-decode/store';
 import type { TransformMode } from '@/features/tools/base64-encode-decode/store';
 
@@ -15,31 +15,21 @@ const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
 
 @Component({
   selector: 'vy-base64-encode-decode',
-  imports: [RouterLink, FormsModule, Button, Textarea, SelectButton, Message],
+  imports: [FormsModule, Button, Textarea, SelectButton, Message, PageLayoutComponent],
   providers: [Base64Store],
   host: {
     'aria-label': 'Base64 encode and decode tool',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="mx-auto max-w-4xl p-6">
-      <nav class="mb-6" aria-label="Breadcrumb">
-        <a
-          routerLink="/tools"
-          class="text-primary hover:underline"
-          aria-label="Back to tools"
-        >
-          ← Tools
-        </a>
-      </nav>
-
-      <h1 class="text-surface-700 dark:text-surface-200 mb-2 text-2xl font-semibold" id="base64-heading">
-        Base64 Encode / Decode
-      </h1>
-      <p class="text-surface-600 dark:text-surface-400 mb-6 text-sm">
-        Encode text to Base64 or decode Base64 to text. Choose to transform as you type or on button click.
-      </p>
-
+    <vy-page-layout
+      backLink="/tools"
+      backLabel="Tools"
+      heading="Base64 Encode / Decode"
+      headingId="base64-heading"
+      description="Encode text to Base64 or decode Base64 to text. Choose to transform as you type or on button click."
+      maxWidth="4xl"
+    >
       <div class="mb-4 flex flex-wrap items-center gap-3">
         <span class="text-surface-700 dark:text-surface-200 text-sm font-medium">Transform:</span>
         <p-selectButton
@@ -144,7 +134,7 @@ const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
           [attr.aria-label]="'Clear both fields'"
         />
       </div>
-    </div>
+    </vy-page-layout>
   `,
 })
 export class Base64EncodeDecodeFeature {

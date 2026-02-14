@@ -1,24 +1,24 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Button } from 'primeng/button';
 import { InputNumber } from 'primeng/inputnumber';
 import { Checkbox } from 'primeng/checkbox';
 import { InputText } from 'primeng/inputtext';
 import { Message } from 'primeng/message';
-import { MessageService } from 'primeng/api';
+import { CopyButtonComponent, PageLayoutComponent } from '@/commons/components';
 import { PasswordGeneratorStore } from '@/features/tools/password-generator/store';
 
 @Component({
   selector: 'vy-password-generator',
   imports: [
-    RouterLink,
     FormsModule,
     Button,
     InputNumber,
     Checkbox,
     InputText,
     Message,
+    PageLayoutComponent,
+    CopyButtonComponent,
   ],
   providers: [PasswordGeneratorStore],
   host: {
@@ -26,24 +26,13 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="mx-auto max-w-2xl p-6">
-      <nav class="mb-6" aria-label="Breadcrumb">
-        <a
-          routerLink="/tools"
-          class="text-primary hover:underline"
-          aria-label="Back to tools"
-        >
-          ← Tools
-        </a>
-      </nav>
-
-      <h1 class="text-surface-700 dark:text-surface-200 mb-2 text-2xl font-semibold" id="pwgen-heading">
-        Password Generator
-      </h1>
-      <p class="text-surface-600 dark:text-surface-400 mb-6 text-sm">
-        Generate cryptographically random passwords. Choose how many to generate, length, and which character types to include.
-      </p>
-
+    <vy-page-layout
+      backLink="/tools"
+      backLabel="Tools"
+      heading="Password Generator"
+      headingId="pwgen-heading"
+      description="Generate cryptographically random passwords. Choose how many to generate, length, and which character types to include."
+    >
       <section class="mb-6 flex flex-col gap-4" aria-labelledby="options-heading">
         <h2 id="options-heading" class="text-surface-700 dark:text-surface-200 text-lg font-medium sr-only">
           Generator options
@@ -237,32 +226,18 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
                   class="flex-1 font-mono text-sm"
                   [attr.aria-label]="'Password ' + ($index + 1) + ' of ' + store.passwords().length"
                 />
-                <p-button
-                  icon="pi pi-copy"
-                  [rounded]="true"
-                  severity="secondary"
-                  (onClick)="copyToClipboard(pw)"
-                  [attr.aria-label]="'Copy password ' + ($index + 1) + ' to clipboard'"
+                <vy-copy-button
+                  [text]="pw"
+                  [ariaLabel]="'Copy password ' + ($index + 1) + ' to clipboard'"
                 />
               </li>
             }
           </ul>
         </section>
       }
-    </div>
+    </vy-page-layout>
   `,
 })
 export class PasswordGeneratorFeature {
   protected readonly store = inject(PasswordGeneratorStore);
-  private readonly messageService = inject(MessageService);
-
-  protected copyToClipboard(text: string): void {
-    void navigator.clipboard.writeText(text).then(() => {
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Copied!',
-        life: 2000,
-      });
-    });
-  }
 }

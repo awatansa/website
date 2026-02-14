@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Button } from 'primeng/button';
 import { Textarea } from 'primeng/textarea';
 import { SelectButton } from 'primeng/selectbutton';
 import { Message } from 'primeng/message';
+import { PageLayoutComponent } from '@/commons/components';
 import { UrlEncodeDecodeStore } from '@/features/tools/url-encode-decode/store';
 import type { TransformMode } from '@/features/tools/url-encode-decode/store';
 
@@ -15,31 +15,21 @@ const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
 
 @Component({
   selector: 'vy-url-encode-decode',
-  imports: [RouterLink, FormsModule, Button, Textarea, SelectButton, Message],
+  imports: [FormsModule, Button, Textarea, SelectButton, Message, PageLayoutComponent],
   providers: [UrlEncodeDecodeStore],
   host: {
     'aria-label': 'URL encode and decode tool',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="mx-auto max-w-4xl p-6">
-      <nav class="mb-6" aria-label="Breadcrumb">
-        <a
-          routerLink="/tools"
-          class="text-primary hover:underline"
-          aria-label="Back to tools"
-        >
-          ← Tools
-        </a>
-      </nav>
-
-      <h1 class="text-surface-700 dark:text-surface-200 mb-2 text-2xl font-semibold" id="url-heading">
-        URL Encode / Decode
-      </h1>
-      <p class="text-surface-600 dark:text-surface-400 mb-6 text-sm">
-        Encode text for use in URL query strings or decode URL-encoded strings. Transform as you type or on button click.
-      </p>
-
+    <vy-page-layout
+      backLink="/tools"
+      backLabel="Tools"
+      heading="URL Encode / Decode"
+      headingId="url-heading"
+      description="Encode text for use in URL query strings or decode URL-encoded strings. Transform as you type or on button click."
+      maxWidth="4xl"
+    >
       <div class="mb-4 flex flex-wrap items-center gap-3">
         <span class="text-surface-700 dark:text-surface-200 text-sm font-medium">Transform:</span>
         <p-selectButton
@@ -141,10 +131,10 @@ const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
           icon="pi pi-trash"
           severity="secondary"
           (onClick)="store.clear()"
-          aria-label="Clear both fields"
+          [attr.aria-label]="'Clear both fields'"
         />
       </div>
-    </div>
+    </vy-page-layout>
   `,
 })
 export class UrlEncodeDecodeFeature {
