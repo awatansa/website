@@ -37,20 +37,20 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
         </a>
       </nav>
 
-      <h1 class="text-surface-700 mb-2 text-2xl font-semibold" id="pwgen-heading">
+      <h1 class="text-surface-700 dark:text-surface-200 mb-2 text-2xl font-semibold" id="pwgen-heading">
         Password Generator
       </h1>
-      <p class="text-surface-600 mb-6 text-sm">
+      <p class="text-surface-600 dark:text-surface-400 mb-6 text-sm">
         Generate cryptographically random passwords. Choose how many to generate, length, and which character types to include.
       </p>
 
       <section class="mb-6 flex flex-col gap-4" aria-labelledby="options-heading">
-        <h2 id="options-heading" class="text-surface-700 text-lg font-medium sr-only">
+        <h2 id="options-heading" class="text-surface-700 dark:text-surface-200 text-lg font-medium sr-only">
           Generator options
         </h2>
 
         <div class="flex flex-col gap-2">
-          <label id="count-label" class="text-surface-700 text-sm font-medium" for="count-input">
+          <label id="count-label" class="text-surface-700 dark:text-surface-200 text-sm font-medium" for="count-input">
             Number of passwords
           </label>
           <p-inputnumber
@@ -68,7 +68,7 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
         </div>
 
         <div class="flex flex-col gap-2">
-          <label id="length-label" class="text-surface-700 text-sm font-medium" for="length-input">
+          <label id="length-label" class="text-surface-700 dark:text-surface-200 text-sm font-medium" for="length-input">
             Password length
           </label>
           <p-inputnumber
@@ -86,10 +86,10 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
         </div>
 
         <fieldset class="flex flex-col gap-2 border-0 p-0" aria-describedby="chars-desc">
-          <legend class="text-surface-700 text-sm font-medium">
+          <legend class="text-surface-700 dark:text-surface-200 text-sm font-medium">
             Character types to include
           </legend>
-          <span id="chars-desc" class="text-surface-600 text-xs">
+          <span id="chars-desc" class="text-surface-600 dark:text-surface-400 text-xs">
             Select at least one.
           </span>
           <div class="mt-2 flex flex-wrap gap-4">
@@ -101,7 +101,7 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
                 (ngModelChange)="store.setIncludeLowercase($event)"
                 [attr.aria-label]="'Include lowercase letters a–z'"
               />
-              <label for="opt-lower" class="text-surface-700 text-sm cursor-pointer">
+              <label for="opt-lower" class="text-surface-700 dark:text-surface-200 text-sm cursor-pointer">
                 Lowercase (a–z)
               </label>
             </div>
@@ -113,7 +113,7 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
                 (ngModelChange)="store.setIncludeUppercase($event)"
                 [attr.aria-label]="'Include uppercase letters A–Z'"
               />
-              <label for="opt-upper" class="text-surface-700 text-sm cursor-pointer">
+              <label for="opt-upper" class="text-surface-700 dark:text-surface-200 text-sm cursor-pointer">
                 Uppercase (A–Z)
               </label>
             </div>
@@ -125,7 +125,7 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
                 (ngModelChange)="store.setIncludeNumbers($event)"
                 [attr.aria-label]="'Include digits 0–9'"
               />
-              <label for="opt-numbers" class="text-surface-700 text-sm cursor-pointer">
+              <label for="opt-numbers" class="text-surface-700 dark:text-surface-200 text-sm cursor-pointer">
                 Numbers (0–9)
               </label>
             </div>
@@ -137,15 +137,15 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
                 (ngModelChange)="store.setIncludeSymbols($event)"
                 [attr.aria-label]="'Include symbols'"
               />
-              <label for="opt-symbols" class="text-surface-700 text-sm cursor-pointer">
+              <label for="opt-symbols" class="text-surface-700 dark:text-surface-200 text-sm cursor-pointer">
                 Symbols
               </label>
             </div>
           </div>
           @if (store.includeLowercase() || store.includeUppercase() || store.includeNumbers() || store.includeSymbols()) {
-            <div class="mt-2 rounded-md border border-surface-200 bg-surface-50 p-3 dark:border-surface-700 dark:bg-surface-800" role="status" aria-live="polite">
-              <p class="text-surface-700 mb-1.5 text-sm font-medium">Characters that will be included</p>
-              <ul class="text-surface-600 flex flex-wrap gap-x-4 gap-y-1 text-xs">
+            <div class="mt-2 rounded-md border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800 p-3" role="status" aria-live="polite">
+              <p class="text-surface-700 dark:text-surface-200 mb-1.5 text-sm font-medium">Characters that will be included</p>
+              <ul class="text-surface-600 dark:text-surface-400 flex flex-wrap gap-x-4 gap-y-1 text-xs">
                 @if (store.includeLowercase()) {
                   <li>Lowercase: a–z</li>
                 }
@@ -164,10 +164,10 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
         </fieldset>
 
         <div class="flex flex-col gap-2">
-          <label id="custom-symbols-label" class="text-surface-700 text-sm font-medium" for="custom-symbols-input">
+          <label id="custom-symbols-label" class="text-surface-700 dark:text-surface-200 text-sm font-medium" for="custom-symbols-input">
             Special characters to include
           </label>
-          <span class="text-surface-600 text-xs">
+          <span class="text-surface-600 dark:text-surface-400 text-xs">
             Used when Symbols is checked. Leave empty to use the default symbol set.
           </span>
           <input
@@ -223,7 +223,7 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
           aria-labelledby="results-heading"
           aria-live="polite"
         >
-          <h2 id="results-heading" class="text-surface-700 text-lg font-medium">
+          <h2 id="results-heading" class="text-surface-700 dark:text-surface-200 text-lg font-medium">
             Generated passwords
           </h2>
           <ul class="list-none flex flex-col gap-2 p-0 m-0">

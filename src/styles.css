@@ -3,3 +3,6 @@
 @import "tailwindcss";
 @import "tailwindcss-primeui";
 @import "primeicons/primeicons.css";
+
+/* Align Tailwind dark: variant with PrimeNG theme (darkModeSelector: .dark-theme) */
+@custom-variant dark (&:where(.dark-theme, .dark-theme *));

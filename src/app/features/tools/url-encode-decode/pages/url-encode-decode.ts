@@ -33,15 +33,15 @@ const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
         </a>
       </nav>
 
-      <h1 class="text-surface-700 mb-2 text-2xl font-semibold" id="url-heading">
+      <h1 class="text-surface-700 dark:text-surface-200 mb-2 text-2xl font-semibold" id="url-heading">
         URL Encode / Decode
       </h1>
-      <p class="text-surface-600 mb-6 text-sm">
+      <p class="text-surface-600 dark:text-surface-400 mb-6 text-sm">
         Encode text for use in URL query strings or decode URL-encoded strings. Transform as you type or on button click.
       </p>
 
       <div class="mb-4 flex flex-wrap items-center gap-3">
-        <span class="text-surface-700 text-sm font-medium">Transform:</span>
+        <span class="text-surface-700 dark:text-surface-200 text-sm font-medium">Transform:</span>
         <p-selectButton
           [options]="transformOptions"
           [ngModel]="store.transformMode()"
@@ -57,7 +57,7 @@ const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
           class="flex flex-col gap-2"
           aria-labelledby="plain-label"
         >
-          <label id="plain-label" class="text-surface-700 text-sm font-medium" for="plain-textarea">
+          <label id="plain-label" class="text-surface-700 dark:text-surface-200 text-sm font-medium" for="plain-textarea">
             Plain text
           </label>
           <textarea
@@ -88,7 +88,7 @@ const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
           class="flex flex-col gap-2"
           aria-labelledby="encoded-label"
         >
-          <label id="encoded-label" class="text-surface-700 text-sm font-medium" for="encoded-textarea">
+          <label id="encoded-label" class="text-surface-700 dark:text-surface-200 text-sm font-medium" for="encoded-textarea">
             URL-encoded
           </label>
           <textarea

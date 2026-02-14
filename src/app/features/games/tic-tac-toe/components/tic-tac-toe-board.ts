@@ -20,12 +20,12 @@ import { TicTacToeStore } from '@/features/games/tic-tac-toe/store';
         </a>
       </nav>
 
-      <h1 class="text-surface-700 mb-2 text-2xl font-semibold" id="ttt-heading">
+      <h1 class="text-surface-700 dark:text-surface-200 mb-2 text-2xl font-semibold" id="ttt-heading">
         Tic-Tac-Toe
       </h1>
 
       <p
-        class="text-surface-600 mb-6 text-sm"
+        class="text-surface-600 dark:text-surface-400 mb-6 text-sm"
         aria-live="polite"
         [attr.aria-atomic]="true"
         [attr.aria-label]="store.statusMessage()"
@@ -42,10 +42,12 @@ import { TicTacToeStore } from '@/features/games/tic-tac-toe/store';
         @for (cell of store.board(); track $index) {
           <button
             type="button"
-            class="flex aspect-square min-h-14 items-center justify-center rounded-lg border-2 border-surface-300 bg-surface-0 text-2xl font-bold transition-colors hover:border-primary focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
+            class="flex aspect-square min-h-14 items-center justify-center rounded-lg border-2 border-surface-300 dark:border-surface-600 bg-surface-0 dark:bg-surface-900 text-2xl font-bold transition-colors hover:border-primary focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
             [class.border-primary]="cell !== ''"
             [class.bg-primary-50]="cell === 'X'"
+            [class.dark:bg-primary-900/40]="cell === 'X'"
             [class.bg-primary-100]="cell === 'O'"
+            [class.dark:bg-primary-800/50]="cell === 'O'"
             [disabled]="cell !== '' || store.gameOver()"
             [attr.aria-label]="getCellAriaLabel($index)"
             [attr.aria-rowindex]="getRowIndex($index)"
@@ -60,7 +62,7 @@ import { TicTacToeStore } from '@/features/games/tic-tac-toe/store';
       <div class="mt-6 flex flex-wrap gap-3">
         <button
           type="button"
-          class="rounded-lg border border-surface-300 bg-surface-0 px-4 py-2 font-medium hover:bg-surface-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          class="rounded-lg border border-surface-300 dark:border-surface-600 bg-surface-0 dark:bg-surface-900 px-4 py-2 font-medium hover:bg-surface-100 dark:hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           (click)="store.reset()"
           aria-label="Start a new game"
         >
@@ -68,7 +70,7 @@ import { TicTacToeStore } from '@/features/games/tic-tac-toe/store';
         </button>
         <a
           routerLink="/games/casual"
-          class="inline-flex items-center rounded-lg border border-surface-300 bg-surface-0 px-4 py-2 font-medium hover:bg-surface-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          class="inline-flex items-center rounded-lg border border-surface-300 dark:border-surface-600 bg-surface-0 dark:bg-surface-900 px-4 py-2 font-medium hover:bg-surface-100 dark:hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           aria-label="Back to casual games"
         >
           Back to casual games

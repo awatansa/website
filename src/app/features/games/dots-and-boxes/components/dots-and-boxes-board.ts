@@ -21,12 +21,12 @@ import { DotsAndBoxesStore } from '@/features/games/dots-and-boxes/store';
         </a>
       </nav>
 
-      <h1 class="text-surface-700 mb-2 text-2xl font-semibold" id="dab-heading">
+      <h1 class="text-surface-700 dark:text-surface-200 mb-2 text-2xl font-semibold" id="dab-heading">
         Dots and Boxes
       </h1>
 
       <p
-        class="text-surface-600 mb-4 text-sm"
+        class="text-surface-600 dark:text-surface-400 mb-4 text-sm"
         aria-live="polite"
         [attr.aria-atomic]="true"
         [attr.aria-label]="store.statusMessage()"
@@ -35,16 +35,16 @@ import { DotsAndBoxesStore } from '@/features/games/dots-and-boxes/store';
       </p>
 
       <div class="mb-4 flex gap-6 text-sm">
-        <span class="font-medium text-surface-700">
+        <span class="font-medium text-surface-700 dark:text-surface-200">
           Player 1: <span class="text-primary font-bold">{{ store.score1() }}</span>
         </span>
-        <span class="font-medium text-surface-700">
+        <span class="font-medium text-surface-700 dark:text-surface-200">
           Player 2: <span class="text-primary font-bold">{{ store.score2() }}</span>
         </span>
       </div>
 
       <div
-        class="inline-grid gap-0 border border-surface-300 bg-surface-0 p-2"
+        class="inline-grid gap-0 border border-surface-300 dark:border-surface-600 bg-surface-0 dark:bg-surface-900 p-2"
         [style.grid-template-rows]="gridRows()"
         [style.grid-template-columns]="gridCols()"
         role="grid"
@@ -54,7 +54,7 @@ import { DotsAndBoxesStore } from '@/features/games/dots-and-boxes/store';
           @for (j of colIndices(); track j) {
             @if (isDot(i, j)) {
               <span
-                class="h-3 w-3 rounded-full bg-surface-700"
+                class="h-3 w-3 rounded-full bg-surface-700 dark:bg-surface-400"
                 [attr.aria-hidden]="true"
                 [attr.data-row]="i"
                 [attr.data-col]="j"
@@ -62,7 +62,7 @@ import { DotsAndBoxesStore } from '@/features/games/dots-and-boxes/store';
             } @else if (isHorizontalEdge(i, j)) {
               <button
                 type="button"
-                class="h-3 min-w-12 rounded-sm border-2 border-transparent transition-colors hover:border-primary hover:bg-surface-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-70"
+                class="h-3 min-w-12 rounded-sm border-2 border-transparent transition-colors hover:border-primary hover:bg-surface-100 dark:hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-70"
                 [class.border-primary]="getHorizontalOwner(i, j) !== null"
                 [class.bg-primary]="getHorizontalOwner(i, j) !== null"
                 [disabled]="getHorizontalOwner(i, j) !== null || store.gameOver()"
@@ -72,7 +72,7 @@ import { DotsAndBoxesStore } from '@/features/games/dots-and-boxes/store';
             } @else if (isVerticalEdge(i, j)) {
               <button
                 type="button"
-                class="min-h-12 w-3 rounded-sm border-2 border-transparent transition-colors hover:border-primary hover:bg-surface-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-70"
+                class="min-h-12 w-3 rounded-sm border-2 border-transparent transition-colors hover:border-primary hover:bg-surface-100 dark:hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-70"
                 [class.border-primary]="getVerticalOwner(i, j) !== null"
                 [class.bg-primary]="getVerticalOwner(i, j) !== null"
                 [disabled]="getVerticalOwner(i, j) !== null || store.gameOver()"
@@ -83,7 +83,9 @@ import { DotsAndBoxesStore } from '@/features/games/dots-and-boxes/store';
               <span
                 class="min-h-12 min-w-12 rounded-sm"
                 [class.bg-primary-50]="getBoxOwner((i - 1) / 2, (j - 1) / 2) === 1"
+                [class.dark:bg-primary-900/40]="getBoxOwner((i - 1) / 2, (j - 1) / 2) === 1"
                 [class.bg-primary-100]="getBoxOwner((i - 1) / 2, (j - 1) / 2) === 2"
+                [class.dark:bg-primary-800/50]="getBoxOwner((i - 1) / 2, (j - 1) / 2) === 2"
                 [attr.aria-hidden]="true"
                 [attr.data-box-row]="(i - 1) / 2"
                 [attr.data-box-col]="(j - 1) / 2"
@@ -103,7 +105,7 @@ import { DotsAndBoxesStore } from '@/features/games/dots-and-boxes/store';
         />
         <a
           routerLink="/games/casual"
-          class="inline-flex items-center rounded-lg border border-surface-300 bg-surface-0 px-4 py-2 font-medium hover:bg-surface-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          class="inline-flex items-center rounded-lg border border-surface-300 dark:border-surface-600 bg-surface-0 dark:bg-surface-900 px-4 py-2 font-medium hover:bg-surface-100 dark:hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           aria-label="Back to casual games"
         >
           Back to casual games

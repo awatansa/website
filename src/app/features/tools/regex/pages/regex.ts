@@ -45,20 +45,20 @@ const REGEX_GUIDE = [
         </a>
       </nav>
 
-      <h1 class="text-surface-700 mb-2 text-2xl font-semibold" id="regex-heading">
+      <h1 class="text-surface-700 dark:text-surface-200 mb-2 text-2xl font-semibold" id="regex-heading">
         Regular Expression Check
       </h1>
-      <p class="text-surface-600 mb-6 text-sm">
+      <p class="text-surface-600 dark:text-surface-400 mb-6 text-sm">
         Enter a regular expression and test text. Matches are highlighted; non-matching text is dimmed. View match count, capturing groups, and a short reference below.
       </p>
 
       <section class="mb-6 flex flex-col gap-4" aria-labelledby="inputs-heading">
-        <h2 id="inputs-heading" class="text-surface-700 text-lg font-medium sr-only">
+        <h2 id="inputs-heading" class="text-surface-700 dark:text-surface-200 text-lg font-medium sr-only">
           Regex and test inputs
         </h2>
 
         <div class="flex flex-col gap-2">
-          <label id="pattern-label" class="text-surface-700 text-sm font-medium" for="pattern-input">
+          <label id="pattern-label" class="text-surface-700 dark:text-surface-200 text-sm font-medium" for="pattern-input">
             Regular expression
           </label>
           <div class="flex flex-wrap items-center gap-2">
@@ -75,7 +75,7 @@ const REGEX_GUIDE = [
               aria-describedby="pattern-error"
               aria-labelledby="pattern-label"
             />
-            <span class="text-surface-500 text-sm">/</span>
+            <span class="text-surface-500 dark:text-surface-400 text-sm">/</span>
             <input
               id="flags-input"
               type="text"
@@ -101,7 +101,7 @@ const REGEX_GUIDE = [
         </div>
 
         <div class="flex flex-col gap-2">
-          <label id="test-label" class="text-surface-700 text-sm font-medium" for="test-textarea">
+          <label id="test-label" class="text-surface-700 dark:text-surface-200 text-sm font-medium" for="test-textarea">
             Test text
           </label>
           <textarea
@@ -123,21 +123,22 @@ const REGEX_GUIDE = [
         aria-labelledby="result-heading"
         aria-live="polite"
       >
-        <h2 id="result-heading" class="text-surface-700 mb-2 text-lg font-medium">
+        <h2 id="result-heading" class="text-surface-700 dark:text-surface-200 mb-2 text-lg font-medium">
           Match result
         </h2>
         <div
-          class="min-h-[6rem] rounded-lg border border-surface-200 bg-surface-0 p-4 font-mono text-sm leading-relaxed"
+          class="min-h-[6rem] rounded-lg border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 p-4 font-mono text-sm leading-relaxed"
           [class.text-surface-500]="store.segments().length === 0"
+          [class.dark:text-surface-400]="store.segments().length === 0"
         >
           @if (store.segments().length === 0 && store.testString() === '') {
-            <span class="text-surface-500">Enter test text to see highlighted matches.</span>
+            <span class="text-surface-500 dark:text-surface-400">Enter test text to see highlighted matches.</span>
           } @else {
             @for (seg of store.segments(); track $index) {
               @if (seg.isMatch) {
                 <span class="rounded bg-primary-100 px-0.5 text-primary-900 dark:bg-primary-900/40 dark:text-primary-100">{{ seg.text }}</span>
               } @else {
-                <span class="text-surface-500">{{ seg.text }}</span>
+                <span class="text-surface-500 dark:text-surface-400">{{ seg.text }}</span>
               }
             }
           }
@@ -146,7 +147,7 @@ const REGEX_GUIDE = [
 
       <div class="mb-6 grid gap-4 sm:grid-cols-2">
         <p-panel header="Statistics" [toggleable]="true">
-          <ul class="list-none p-0 m-0 flex flex-col gap-2 text-surface-700 text-sm">
+          <ul class="list-none p-0 m-0 flex flex-col gap-2 text-surface-700 dark:text-surface-200 text-sm">
             <li>
               <span class="font-medium">Matches:</span>
               {{ store.matchCount() }}
@@ -158,9 +159,9 @@ const REGEX_GUIDE = [
             @if (store.matches().length > 0 && store.matches()[0].groups.length > 0) {
               <li class="mt-2 flex flex-col gap-1">
                 <span class="font-medium">Group values:</span>
-                <ol class="list-decimal list-inside text-surface-600">
+                <ol class="list-decimal list-inside text-surface-600 dark:text-surface-400">
                   @for (g of store.matches()[0].groups; track $index) {
-                    <li><code class="rounded bg-surface-100 px-1 dark:bg-surface-800">{{ g || '(empty)' }}</code></li>
+                    <li><code class="rounded bg-surface-100 dark:bg-surface-800 px-1">{{ g || '(empty)' }}</code></li>
                   }
                 </ol>
               </li>
@@ -169,11 +170,11 @@ const REGEX_GUIDE = [
         </p-panel>
 
         <p-panel header="Quick reference" [toggleable]="true">
-          <ul class="list-none p-0 m-0 flex flex-col gap-1.5 text-surface-600 text-sm">
+          <ul class="list-none p-0 m-0 flex flex-col gap-1.5 text-surface-600 dark:text-surface-400 text-sm">
             @for (item of regexGuide; track item.tip) {
               <li>
-                <span class="text-surface-700">{{ item.tip }}</span>
-                <code class="ml-1 rounded bg-surface-100 px-1 font-mono text-xs dark:bg-surface-800">{{ item.example }}</code>
+                <span class="text-surface-700 dark:text-surface-200">{{ item.tip }}</span>
+                <code class="ml-1 rounded bg-surface-100 dark:bg-surface-800 px-1 font-mono text-xs">{{ item.example }}</code>
               </li>
             }
           </ul>

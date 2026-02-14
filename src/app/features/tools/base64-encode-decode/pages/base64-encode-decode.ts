@@ -33,15 +33,15 @@ const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
         </a>
       </nav>
 
-      <h1 class="text-surface-700 mb-2 text-2xl font-semibold" id="base64-heading">
+      <h1 class="text-surface-700 dark:text-surface-200 mb-2 text-2xl font-semibold" id="base64-heading">
         Base64 Encode / Decode
       </h1>
-      <p class="text-surface-600 mb-6 text-sm">
+      <p class="text-surface-600 dark:text-surface-400 mb-6 text-sm">
         Encode text to Base64 or decode Base64 to text. Choose to transform as you type or on button click.
       </p>
 
       <div class="mb-4 flex flex-wrap items-center gap-3">
-        <span class="text-surface-700 text-sm font-medium">Transform:</span>
+        <span class="text-surface-700 dark:text-surface-200 text-sm font-medium">Transform:</span>
         <p-selectButton
           [options]="transformOptions"
           [ngModel]="store.transformMode()"
@@ -57,7 +57,7 @@ const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
           class="flex flex-col gap-2"
           aria-labelledby="plain-label"
         >
-          <label id="plain-label" class="text-surface-700 text-sm font-medium" for="plain-textarea">
+          <label id="plain-label" class="text-surface-700 dark:text-surface-200 text-sm font-medium" for="plain-textarea">
             Plain text
           </label>
           <textarea
@@ -88,7 +88,7 @@ const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
           class="flex flex-col gap-2"
           aria-labelledby="base64-label"
         >
-          <label id="base64-label" class="text-surface-700 text-sm font-medium" for="base64-textarea">
+          <label id="base64-label" class="text-surface-700 dark:text-surface-200 text-sm font-medium" for="base64-textarea">
             Base64
           </label>
           <textarea
