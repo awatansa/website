@@ -23,8 +23,6 @@ const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <vy-page-layout
-      backLink="/tools"
-      backLabel="Tools"
       heading="Base64 Encode / Decode"
       headingId="base64-heading"
       description="Encode text to Base64 or decode Base64 to text. Choose to transform as you type or on button click."

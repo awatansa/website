@@ -23,8 +23,6 @@ const TRANSFORM_OPTIONS: { label: string; value: TransformMode }[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <vy-page-layout
-      backLink="/tools"
-      backLabel="Tools"
       heading="URL Encode / Decode"
       headingId="url-heading"
       description="Encode text for use in URL query strings or decode URL-encoded strings. Transform as you type or on button click."

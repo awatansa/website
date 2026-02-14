@@ -35,8 +35,6 @@ const REGEX_GUIDE = [
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <vy-page-layout
-      backLink="/tools"
-      backLabel="Tools"
       heading="Regular Expression Check"
       headingId="regex-heading"
       description="Enter a regular expression and test text. Matches are highlighted; non-matching text is dimmed. View match count, capturing groups, and a short reference below."

@@ -27,8 +27,6 @@ import { PasswordGeneratorStore } from '@/features/tools/password-generator/stor
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <vy-page-layout
-      backLink="/tools"
-      backLabel="Tools"
       heading="Password Generator"
       headingId="pwgen-heading"
       description="Generate cryptographically random passwords. Choose how many to generate, length, and which character types to include."
