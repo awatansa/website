@@ -1,54 +1,54 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', loadComponent: () => import('@/pages/home').then((m) => m.HomePage) },
+  { path: '', loadComponent: () => import('@/features/home/pages/home').then((m) => m.HomePage) },
   {
     path: 'games',
-    loadComponent: () => import('@/pages/games').then((m) => m.GamesPage),
+    loadComponent: () => import('@/features/games/pages/games').then((m) => m.GamesPage),
     children: [
       {
         path: '',
-        loadComponent: () => import('@/features/games/index').then((m) => m.GamesIndexFeature),
+        loadComponent: () => import('@/features/games/components/index').then((m) => m.GamesIndexFeature),
       },
       {
         path: 'casual',
-        loadComponent: () => import('@/features/games/casual-layout').then((m) => m.GamesCasualLayout),
+        loadComponent: () => import('@/features/games/components/casual-layout').then((m) => m.GamesCasualLayout),
         children: [
           {
             path: '',
-            loadComponent: () => import('@/features/games/casual').then((m) => m.GamesCasualFeature),
+            loadComponent: () => import('@/features/games/components/casual').then((m) => m.GamesCasualFeature),
           },
           {
             path: 'tic-tac-toe',
-            loadComponent: () => import('@/features/games/tic-tac-toe').then((m) => m.TicTacToeFeature),
+            loadComponent: () => import('@/features/games/components/tic-tac-toe').then((m) => m.TicTacToeFeature),
           },
         ],
       },
       {
         path: 'puzzle',
-        loadComponent: () => import('@/features/games/puzzle').then((m) => m.GamesPuzzleFeature),
+        loadComponent: () => import('@/features/games/components/puzzle').then((m) => m.GamesPuzzleFeature),
       },
     ],
   },
   {
     path: 'tools',
-    loadComponent: () => import('@/pages/tools').then((m) => m.ToolsPage),
+    loadComponent: () => import('@/features/tools/pages/tools').then((m) => m.ToolsPage),
     children: [
       {
         path: '',
-        loadComponent: () => import('@/features/tools/index').then((m) => m.ToolsIndexFeature),
+        loadComponent: () => import('@/features/tools/components/index').then((m) => m.ToolsIndexFeature),
       },
       {
         path: 'productivity',
         loadComponent: () =>
-          import('@/features/tools/productivity').then((m) => m.ToolsProductivityFeature),
+          import('@/features/tools/components/productivity').then((m) => m.ToolsProductivityFeature),
       },
       {
         path: 'developer',
         loadComponent: () =>
-          import('@/features/tools/developer').then((m) => m.ToolsDeveloperFeature),
+          import('@/features/tools/components/developer').then((m) => m.ToolsDeveloperFeature),
       },
     ],
   },
-  { path: 'about', loadComponent: () => import('@/pages/about').then((m) => m.AboutPage) },
+  { path: 'about', loadComponent: () => import('@/features/about/pages/about').then((m) => m.AboutPage) },
 ];

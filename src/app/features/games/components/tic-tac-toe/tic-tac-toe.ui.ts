@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TicTacToeStore } from '@/features/games/tic-tac-toe/store';
+import { TicTacToeStore } from '@/features/games/components/tic-tac-toe/store';
 
 @Component({
   selector: 'vy-tic-tac-toe',
