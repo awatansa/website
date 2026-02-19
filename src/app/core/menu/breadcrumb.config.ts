@@ -13,6 +13,7 @@ export const BREADCRUMB_LABELS: Record<string, string> = {
   tools: 'Tools',
   productivity: 'Productivity Tools',
   'developer-tool': 'Developer Tools',
+  'base32-encode-decode': 'Base32 Encode / Decode',
   'base64-encode-decode': 'Base64 Encode / Decode',
   'url-encode-decode': 'URL Encode / Decode',
   'password-generator': 'Password Generator',

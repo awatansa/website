@@ -52,6 +52,11 @@ export class NavMenuConfig {
                 routerLink: '/tools/developer-tool',
               },
               {
+                label: 'Base32 Encode / Decode',
+                icon: 'pi pi-key',
+                routerLink: '/tools/developer-tool/base32-encode-decode',
+              },
+              {
                 label: 'Base64 Encode / Decode',
                 icon: 'pi pi-key',
                 routerLink: '/tools/developer-tool/base64-encode-decode',

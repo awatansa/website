@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { PageLayoutComponent } from '@/commons/components';
 
 const TOOLS: { path: string; label: string; description: string }[] = [
+  { path: 'base32-encode-decode', label: 'Base32 Encode / Decode', description: 'Encode or decode text to Base32 (RFC 4648).' },
   { path: 'base64-encode-decode', label: 'Base64 Encode / Decode', description: 'Encode or decode text to Base64.' },
   { path: 'url-encode-decode', label: 'URL Encode / Decode', description: 'Encode or decode URL query strings.' },
   { path: 'password-generator', label: 'Password Generator', description: 'Generate cryptographically random passwords.' },

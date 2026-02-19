@@ -75,6 +75,13 @@ export const routes: Routes = [
                   ),
               },
               {
+                path: 'base32-encode-decode',
+                loadComponent: () =>
+                  import('@/features/tools/developer-tool/base32-encode-decode').then(
+                    (m) => m.Base32EncodeDecodeFeature
+                  ),
+              },
+              {
                 path: 'base64-encode-decode',
                 loadComponent: () =>
                   import('@/features/tools/developer-tool/base64-encode-decode').then(
